@@ -1,8 +1,13 @@
 <div class="container">
   <div class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item nav-link" routerLink="/animals" routerLinkActive="active-menu">Animals</li>
-      <li class="nav-item nav-link" routerLink="/fruits" routerLinkActive="active-menu">Fruits</li>
+    <ul class="navbar-nav">
+      <div style="float: left;">
+        <li class="nav-item nav-link" routerLink="/animals" routerLinkActive="active-menu">Animals</li>
+        <li class="nav-item nav-link" routerLink="/fruits" routerLinkActive="active-menu">Fruits</li></div>
+      <div style="float: right;">
+        <li class="nav-item nav-link" routerLink="/generic/animals" routerLinkActive="active-menu"> Animals</li>
+      <li class="nav-item nav-link" routerLink="/generic/fruits" routerLinkActive="active-menu"> Fruits</li>
+      </div>
     </ul>
   </div>
     <router-outlet></router-outlet>
