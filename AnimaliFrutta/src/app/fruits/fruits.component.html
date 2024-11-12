@@ -1,1 +1,5 @@
-<p>fruits works!</p>
+<div class="container">
+    <div class="cella" *ngFor="let element of fruits, index as i">
+        <p>{{element.emoji}}<br>{{element.name}} </p>
+    </div>
+</div>
