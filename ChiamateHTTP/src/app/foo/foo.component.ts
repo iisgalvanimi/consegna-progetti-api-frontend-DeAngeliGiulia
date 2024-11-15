@@ -52,7 +52,8 @@ export class FooComponent implements OnInit{
             this.loading = false;
           });
       }
-      makeTypedRequest() : void {//oFoo : Observable<Foo[]>; va dichiarato tra gli attributi della classe
+      makeTypedRequest() : void {
+        //oFoo : Observable<Foo[]>; va dichiarato tra gli attributi della classe
         this.oFoo = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts');
         this.oFoo.subscribe(data => {this.fooData = data;});
       }
