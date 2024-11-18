@@ -1,0 +1,33 @@
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin: 20px;
+  }
+  
+  .color-box {
+    padding: 20px;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .color-info {
+    text-shadow: 1px 1px 2px black;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .no-colors {
+    text-align: center;
+    margin-top: 20px;
+  }
+  

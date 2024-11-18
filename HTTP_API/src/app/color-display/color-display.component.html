@@ -1,0 +1,18 @@
+<div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+  
+  <div *ngIf="colors.length > 0" class="color-grid">
+    <div *ngFor="let color of colors" class="color-box" [style.background-color]="'#' + color.hex">
+      <div class="color-info">
+        <p><strong>{{ color.name }}</strong></p>
+        <p>{{ color.hex }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- In caso non ci siano colori, mostra un messaggio -->
+  <div *ngIf="colors.length === 0" class="no-colors">
+    Nessun colore disponibile.
+  </div>
+  
