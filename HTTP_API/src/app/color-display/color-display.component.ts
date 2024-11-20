@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-color-display',
   templateUrl: './color-display.component.html',
-  styleUrls: ['./color-display.component.css']
+  styleUrls: ['./color-display.component.css'],
 })
 export class ColorDisplayComponent implements OnInit {
   colorData: any;
@@ -14,24 +14,29 @@ export class ColorDisplayComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const colorName = params.get('name')!;
-      this.fetchCardData(colorName);
+    this.route.paramMap.subscribe((params) => {
+      const hexCode = params.get('hexCode')!;
+      this.fetchColorDetails(hexCode);
     });
   }
 
-  fetchCardData(colorName: string): void {
+  fetchColorDetails(hexCode: string): void {
     this.loading = true;
-    const url = `https://www.colourlovers.com/api/color/{colorName}`;
-    this.http.get(url).subscribe(
+    const url = `https://www.colourlovers.com/api/color/${hexCode}?format=json`;
+
+    console.log(url)
+
+    this.http.get<any>(url).subscribe(
       (data) => {
-        this.colorData = data;
+        console.log(data)
+        this.colorData = data[0]; // L'API restituisce un array con un singolo colore
         this.loading = false;
       },
       (error) => {
-        console.error('Errore nel recupero del colore:', error);
+        console.error('Errore nel caricamento del colore:', error);
         this.loading = false;
       }
     );
   }
 }
+

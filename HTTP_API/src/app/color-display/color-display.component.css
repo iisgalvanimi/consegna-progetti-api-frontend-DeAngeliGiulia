@@ -1,33 +1,42 @@
-.color-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-    margin: 20px;
-  }
-  
-  .color-box {
-    padding: 20px;
-    color: white;
-    text-align: center;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-  }
-  
-  .color-info {
-    text-shadow: 1px 1px 2px black;
-  }
-  
-  .error {
-    color: red;
-    text-align: center;
-    margin: 20px;
-  }
-  
-  .no-colors {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+
+.loading {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #299bdd;
+}
+
+.palette {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #1e293b;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.palette h1 {
+  text-align: center;
+  color: #299bdd;
+  margin-bottom: 1rem;
+}
+
+.colors {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.color {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
