@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ColorService } from '../colours.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-color-display',
@@ -7,19 +8,29 @@ import { ColorService } from '../colours.service';
   styleUrls: ['./color-display.component.css']
 })
 export class ColorDisplayComponent implements OnInit {
-  colors: any[] = [];  // Array che conterrà i colori ricevuti dall'API
-  errorMessage: string = '';  // Messaggio di errore in caso di problemi
+  colorData: any;
+  loading = false;
 
-  constructor(private colorService: ColorService) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.colorService.getColors().subscribe(
-      data => {
-        this.colors = data;  // Assegniamo i colori ricevuti all'array
+    this.route.paramMap.subscribe(params => {
+      const colorName = params.get('name')!;
+      this.fetchCardData(colorName);
+    });
+  }
+
+  fetchCardData(colorName: string): void {
+    this.loading = true;
+    const url = `https://www.colourlovers.com/api/color/{colorName}`;
+    this.http.get(url).subscribe(
+      (data) => {
+        this.colorData = data;
+        this.loading = false;
       },
-      error => {
-        this.errorMessage = 'Errore nel caricamento dei colori';
-        console.error(error);  // Log dell'errore in console per il debug
+      (error) => {
+        console.error('Errore nel recupero del colore:', error);
+        this.loading = false;
       }
     );
   }

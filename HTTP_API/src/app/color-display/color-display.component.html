@@ -1,18 +1,34 @@
-<div *ngIf="errorMessage" class="error">
-    {{ errorMessage }}
-  </div>
+<div *ngIf="loading">Caricamento...</div>
+
+<div *ngIf="!loading && colorData">
+  <h1>{{ colorData.name }}</h1>
+
+  <!-- Display image with fallback if no image exists -->
+  <img *ngIf="colorData.image_uris?.normal; else noImage" [src]="colorData.image_uris?.normal" alt="{{ colorData.name }}">
+
+  <!-- Fallback image if no image is found -->
+  <ng-template #noImage>
+    <img src="path/to/default/image.jpg" alt="No Image Available">
+  </ng-template>
+
+  <p><strong>RGB:</strong> {{ colorData.rgb }}</p>
+  <p><strong>Tipo:</strong> {{ colorData.type_line }}</p>
+
+  <!-- Display the oracle_text if available, otherwise skip it -->
+  <p *ngIf="colorData.oracle_text"><strong>Descrizione:</strong> {{ colorData.oracle_text }}</p>
   
-  <div *ngIf="colors.length > 0" class="color-grid">
-    <div *ngFor="let color of colors" class="color-box" [style.background-color]="'#' + color.hex">
-      <div class="color-info">
-        <p><strong>{{ color.name }}</strong></p>
-        <p>{{ color.hex }}</p>
-      </div>
-    </div>
-  </div>
+  <!-- Display the set_name if available, otherwise skip it -->
+  <p *ngIf="colorData.set_name"><strong>Set:</strong> {{ colorData.set_name }}</p>
+
+  <!-- Display the price if available, otherwise skip it -->
   
-  <!-- In caso non ci siano colori, mostra un messaggio -->
-  <div *ngIf="colors.length === 0" class="no-colors">
-    Nessun colore disponibile.
-  </div>
-  
+  <!-- Additional details if available -->
+
+  <p *ngIf="colorData.date_created"><strong>Data di Creazione:</strong> {{ colorData.date_created | date:'dd/MM/yyyy' }}</p>
+
+  <!-- Link to color details -->
+  <p *ngIf="colorData.url"><a [href]="colorData.url" target="_blank">Vedi dettagli del colore</a></p>
+
+  <!-- Display a badge -->
+  <img *ngIf="colorData.badgeUrl" [src]="colorData.badgeUrl" alt="Badge">
+</div>
